@@ -146,11 +146,6 @@
   to { background-position: -80px -80px; }
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
 @utility fluid-hero {
   font-size: clamp(2.25rem, 1.5rem + 3.75cqi, 4.5rem);
 }

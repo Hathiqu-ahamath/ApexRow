@@ -7,7 +7,7 @@ import { AuroraBackground } from '../components/ui/aurora-background'
 
 export function HeroSection() {
   return (
-    <AuroraBackground className="min-h-screen h-auto pt-28 bg-white">
+    <AuroraBackground className="min-h-screen h-auto pt-20 bg-white">
       <Container className="relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

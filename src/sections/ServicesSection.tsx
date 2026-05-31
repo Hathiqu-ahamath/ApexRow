@@ -22,15 +22,15 @@ export function ServicesSection() {
             return (
               <ScrollReveal key={service.title} delay={i * 0.05}>
                 <motion.div
-                  className="glass-card card-hover group rounded-xl p-6"
+                  className="glass-card card-hover group flex h-full flex-col rounded-xl p-6"
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <div className="gradient-bg mb-4 inline-flex rounded-lg p-3">
+                  <div className="gradient-bg mb-4 inline-flex self-center rounded-lg p-3">
                     <Icon className="h-6 w-6 text-white" />
                   </div>
                   <h3 className="mb-2 text-lg font-semibold text-black">{service.title}</h3>
-                  <p className="text-sm leading-relaxed text-gray">{service.description}</p>
+                  <p className="flex-1 text-sm leading-relaxed text-gray">{service.description}</p>
                 </motion.div>
               </ScrollReveal>
             )
