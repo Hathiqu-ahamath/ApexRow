@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+/*
+ * Switch dark mode from the v4 default of `prefers-color-scheme: dark`
+ * to class-based, so `dark:` only fires when an element has `.dark`.
+ * Without this, users on a dark-mode OS would see the aurora's
+ * --dark-gradient (black stripes) even on a white hero.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-white: #ffffff;
+  --color-soft-white: #f5f5f5;
+  --color-black: #000000;
+  --color-dark: #111111;
+  --color-red: #CE2626;
+  --color-red-dark: #b91c1c;
+  --color-red-light: #fca5a5;
+  --color-gray: #4b5563;
+  --color-gray-light: #6b7280;
+  --color-gray-100: #f3f4f6;
+  --color-gray-border: #e5e7eb;
+  --font-family-heading: "Space Grotesk", sans-serif;
+  --font-family-body: "Inter", sans-serif;
+
+  /* Aurora background animation (Tailwind v4 equivalent of v3 keyframes/animation config) */
+  --animate-aurora: aurora 60s linear infinite;
+}
+
+@keyframes aurora {
+  from {
+    background-position: 50% 50%, 50% 50%;
+  }
+  to {
+    background-position: 350% 50%, 350% 50%;
+  }
+}
+
+/*
+ * Aurora background expects bare CSS variables (e.g. var(--blue-500), var(--white)).
+ * Tailwind v4 exposes default colors as --color-blue-500, so we alias the ones the
+ * aurora component relies on.
+ */
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --transparent: transparent;
+
+  /* Aurora color stops - light gray palette */
+  --aurora-1: #d1d5db; /* gray-300 */
+  --aurora-2: #e5e7eb; /* gray-200 */
+  --aurora-3: #9ca3af; /* gray-400 */
+  --aurora-4: #f3f4f6; /* gray-100 */
+  --aurora-5: #cbd5e1; /* slate-300 */
+}
+
+@layer base {
+  * {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: var(--font-family-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-heading);
+  }
+
+  ::selection {
+    background-color: var(--color-red);
+    color: white;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-soft-white);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-red);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-red-dark);
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 9999;
+    padding: 1rem;
+    background: var(--color-red);
+    color: white;
+    text-decoration: none;
+  }
+
+  .skip-link:focus {
+    left: 0;
+  }
+}
+
+@utility gradient-text {
+  background: linear-gradient(to right, var(--color-red), #E64444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility gradient-bg {
+  background: linear-gradient(to right, var(--color-red), var(--color-red-dark));
+}
+
+@utility glass {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--color-gray-border);
+}
+
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-gray-border);
+}
+
+@utility card-hover {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    border-color: rgba(206, 38, 38, 0.4);
+    box-shadow: 0 4px 24px rgba(206, 38, 38, 0.15);
+  }
+}
+
+@keyframes drift {
+  from { background-position: 0 0; }
+  to { background-position: 40px 40px; }
+}
+
+@keyframes drift-reverse {
+  from { background-position: 0 0; }
+  to { background-position: -80px -80px; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

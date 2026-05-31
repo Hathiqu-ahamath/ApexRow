@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ApexRow — Service Packages</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { display: block; background: #0a0a0a; }
+    .main { margin-left: 0; max-width: 1200px; margin-inline: auto; padding: 2rem; position: relative; z-index: 1; }
+
+    .page-header {
+      text-align: center; padding: 3rem 1rem 1rem;
+      position: relative;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(205,127,50,0.05), transparent 70%);
+      pointer-events: none;
+    }
+    .page-header h1 { margin: 0.75rem 0 0.5rem; font-size: clamp(2rem,4vw,3rem); }
+    .page-header p { color: #a89f94; max-width: 560px; margin-inline: auto; font-size: 0.95rem; }
+
+    .pricing-actions {
+      display: flex; justify-content: center; gap: 0.75rem; margin: 2rem 0 3rem;
+    }
+    .toggle-wrap {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: rgba(18,18,18,0.4);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 999px; padding: 0.3rem;
+      position: relative;
+    }
+    .toggle-btn {
+      padding: 0.55rem 1.35rem; border: none; border-radius: 999px;
+      font-family: 'Inter',sans-serif; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; transition: all 0.3s;
+      background: transparent; color: #a89f94;
+      position: relative; z-index: 1;
+    }
+    .toggle-btn.active {
+      background: linear-gradient(135deg,#4a2c1a,#b87333,#cd7f32);
+      color: #fff;
+      box-shadow: 0 2px 16px rgba(205,127,50,0.2);
+    }
+    .toggle-save {
+      font-size: 0.65rem; color: #cd7f32; font-weight: 700;
+      letter-spacing: 0.03em;
+      padding: 0.2rem 0.75rem;
+      background: rgba(205,127,50,0.08);
+      border-radius: 999px;
+      border: 1px solid rgba(205,127,50,0.12);
+    }
+
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; align-items: start;
+    }
+
+    .pricing-card {
+      background: rgba(18,18,18,0.35);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 18px;
+      padding: 2.5rem 2rem;
+      transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
+      position: relative;
+      display: flex; flex-direction: column;
+    }
+    .pricing-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .pricing-card:hover {
+      border-color: rgba(205,127,50,0.2);
+      box-shadow: 0 0 50px rgba(205,127,50,0.06);
+      transform: translateY(-6px);
+    }
+    .pricing-card:hover::before { opacity: 1; }
+
+    .pricing-card.featured {
+      border-color: rgba(205,127,50,0.2);
+      background: rgba(18,18,18,0.5);
+      transform: scale(1.04);
+      box-shadow: 0 0 40px rgba(205,127,50,0.06);
+    }
+    .pricing-card.featured::after {
+      content: '';
+      position: absolute; inset: 0; border-radius: 18px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(205,127,50,0.15), transparent 50%, rgba(205,127,50,0.05));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    .pricing-card.featured:hover {
+      border-color: rgba(205,127,50,0.35);
+      box-shadow: 0 0 60px rgba(205,127,50,0.12);
+      transform: scale(1.04) translateY(-6px);
+    }
+
+    .pricing-badge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      padding: 0.35rem 1.35rem; border-radius: 999px;
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg,#4a2c1a,#b87333,#cd7f32);
+      color: #fff;
+      white-space: nowrap;
+      box-shadow: 0 2px 20px rgba(205,127,50,0.2);
+    }
+
+    .pricing-plan {
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;
+      color: #a89f94; font-weight: 600; margin-bottom: 0.15rem;
+    }
+    .pricing-name {
+      font-family: 'Space Grotesk',sans-serif;
+      font-size: 1.7rem; font-weight: 700; color: #f5f0eb;
+      margin-bottom: 1.25rem;
+    }
+
+    .pricing-price {
+      margin-bottom: 1.5rem; padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .pricing-amount {
+      font-family: 'Space Grotesk',sans-serif;
+      font-size: 3rem; font-weight: 700; color: #f5f0eb; line-height: 1;
+    }
+    .pricing-amount .currency { font-size: 1.5rem; vertical-align: super; }
+    .pricing-original {
+      font-size: 1rem; color: #4a2c1a; text-decoration: line-through;
+      margin-left: 0.5rem; font-weight: 400;
+    }
+    .pricing-period {
+      font-size: 0.82rem; color: #a89f94; margin-top: 0.35rem;
+    }
+
+    .pricing-desc {
+      color: #a89f94; font-size: 0.88rem; line-height: 1.6;
+      margin-bottom: 1.5rem; flex: 1;
+    }
+
+    .pricing-features {
+      list-style: none; margin-bottom: 2rem;
+    }
+    .pricing-features li {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.55rem 0; font-size: 0.88rem; color: #f5f0eb;
+      border-bottom: 1px solid rgba(255,255,255,0.02);
+    }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-features li .icon { flex-shrink: 0; width: 18px; text-align: center; font-size: 0.8rem; }
+    .pricing-features li .check { color: #cd7f32; }
+    .pricing-features li .cross { color: #4a2c1a; }
+    .pricing-features li .muted { color: #555; }
+
+    .pricing-card .btn {
+      width: 100%; justify-content: center; margin-top: auto;
+      padding: 0.85rem; border-radius: 12px; font-size: 0.9rem;
+    }
+    .pricing-card .btn-primary {
+      background: linear-gradient(135deg,#4a2c1a,#b87333,#cd7f32);
+      color: #fff;
+      box-shadow: 0 2px 20px rgba(205,127,50,0.15);
+    }
+    .pricing-card .btn-primary:hover {
+      box-shadow: 0 4px 32px rgba(205,127,50,0.3);
+      transform: translateY(-2px);
+    }
+
+    .featured-compare {
+      margin-top: 4rem; padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .featured-compare h2 { text-align: center; margin-bottom: 2rem; }
+    .compare-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+      max-width: 900px; margin-inline: auto;
+    }
+    .compare-item {
+      background: rgba(18,18,18,0.25);
+      border: 1px solid rgba(255,255,255,0.03);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      text-align: center;
+    }
+    .compare-item .icon-big { font-size: 1.5rem; margin-bottom: 0.35rem; }
+    .compare-item h4 { font-size: 0.85rem; color: #f5f0eb; margin-bottom: 0.15rem; }
+    .compare-item p { font-size: 0.75rem; color: #a89f94; margin: 0; }
+
+    .faq-section {
+      margin-top: 4rem; padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .faq-section h2 { text-align: center; margin-bottom: 2rem; }
+    .faq-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      max-width: 800px; margin-inline: auto;
+    }
+    .faq-item {
+      background: rgba(18,18,18,0.25);
+      border: 1px solid rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.3s;
+    }
+    .faq-item:hover { border-color: rgba(205,127,50,0.12); }
+    .faq-item h4 {
+      font-size: 0.92rem; color: #f5f0eb; margin-bottom: 0.35rem;
+      font-family: 'Space Grotesk',sans-serif; font-weight: 600;
+    }
+    .faq-item p { font-size: 0.82rem; color: #a89f94; margin: 0; line-height: 1.5; }
+
+    @media (max-width: 1000px) {
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-card.featured { transform: none; order: -1; }
+      .pricing-card.featured:hover { transform: translateY(-6px); }
+      .compare-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 650px) {
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; }
+      .pricing-card.featured { transform: none; order: -1; }
+      .pricing-card.featured:hover { transform: translateY(-6px); }
+      .faq-grid { grid-template-columns: 1fr; }
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+
+    .pricing-card .monthly { display: none; }
+    .pricing-card .annual { display: block; }
+    .pricing-card.show-monthly .monthly { display: block; }
+    .pricing-card.show-monthly .annual { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
+
+  <main class="main">
+
+    <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
+      <button class="btn btn-outline btn-sm" onclick="history.back()">← Back to Brand Kit</button>
+    </div>
+
+    <div class="page-header">
+      <span class="badge">Pricing</span>
+      <h1>Service <span class="text-gradient">Packages</span></h1>
+      <p>Flexible plans for every stage of your digital journey — all include our signature quality and support.</p>
+    </div>
+
+    <div class="pricing-actions">
+      <div class="toggle-wrap">
+        <button class="toggle-btn active" id="toggleMonthly" onclick="togglePricing('monthly')">Monthly</button>
+        <button class="toggle-btn" id="toggleAnnual" onclick="togglePricing('annual')">Annual</button>
+        <span class="toggle-save">Save 20%</span>
+      </div>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- STARTER -->
+      <div class="pricing-card">
+        <div class="pricing-plan">Starter</div>
+        <div class="pricing-name">Essentials</div>
+        <div class="pricing-price">
+          <div class="pricing-amount monthly">
+            <span class="currency">$</span>1,200
+          </div>
+          <div class="pricing-amount annual">
+            <span class="currency">$</span>960 <span class="pricing-original">$1,200</span>
+          </div>
+          <div class="pricing-period">per month · billed <span class="pricing-period-type">monthly</span></div>
+        </div>
+        <p class="pricing-desc">Perfect for startups and small businesses looking to establish their digital presence.</p>
+        <ul class="pricing-features">
+          <li><span class="icon check">✓</span> Custom 5-page website</li>
+          <li><span class="icon check">✓</span> Mobile responsive design</li>
+          <li><span class="icon check">✓</span> Basic SEO setup</li>
+          <li><span class="icon check">✓</span> Contact form integration</li>
+          <li><span class="icon check">✓</span> 1 month post-launch support</li>
+          <li><span class="icon cross">✗</span><span class="muted"> CMS integration</span></li>
+          <li><span class="icon cross">✗</span><span class="muted"> E-commerce</span></li>
+        </ul>
+        <button class="btn btn-primary">Get Started</button>
+      </div>
+
+      <!-- GROWTH -->
+      <div class="pricing-card featured">
+        <div class="pricing-badge">★ Most Popular</div>
+        <div class="pricing-plan">Growth</div>
+        <div class="pricing-name">Professional</div>
+        <div class="pricing-price">
+          <div class="pricing-amount monthly">
+            <span class="currency">$</span>2,800
+          </div>
+          <div class="pricing-amount annual">
+            <span class="currency">$</span>2,240 <span class="pricing-original">$2,800</span>
+          </div>
+          <div class="pricing-period">per month · billed <span class="pricing-period-type">monthly</span></div>
+        </div>
+        <p class="pricing-desc">Ideal for growing businesses that need a robust online presence with advanced features.</p>
+        <ul class="pricing-features">
+          <li><span class="icon check">✓</span> Custom 10-page website</li>
+          <li><span class="icon check">✓</span> Mobile + tablet responsive</li>
+          <li><span class="icon check">✓</span> Advanced SEO strategy</li>
+          <li><span class="icon check">✓</span> Headless CMS integration</li>
+          <li><span class="icon check">✓</span> UI/UX design &amp; prototyping</li>
+          <li><span class="icon check">✓</span> Performance optimization</li>
+          <li><span class="icon check">✓</span> 3 months post-launch support</li>
+          <li><span class="icon cross">✗</span><span class="muted"> E-commerce</span></li>
+        </ul>
+        <button class="btn btn-primary">Get Started</button>
+      </div>
+
+      <!-- ENTERPRISE -->
+      <div class="pricing-card">
+        <div class="pricing-plan">Enterprise</div>
+        <div class="pricing-name">Unlimited</div>
+        <div class="pricing-price">
+          <div class="pricing-amount monthly">
+            <span class="currency">$</span>5,500
+          </div>
+          <div class="pricing-amount annual">
+            <span class="currency">$</span>4,400 <span class="pricing-original">$5,500</span>
+          </div>
+          <div class="pricing-period">per month · billed <span class="pricing-period-type">monthly</span></div>
+        </div>
+        <p class="pricing-desc">For established organizations demanding full-scale digital solutions and dedicated support.</p>
+        <ul class="pricing-features">
+          <li><span class="icon check">✓</span> Unlimited pages &amp; features</li>
+          <li><span class="icon check">✓</span> Full responsive design system</li>
+          <li><span class="icon check">✓</span> Enterprise SEO &amp; analytics</li>
+          <li><span class="icon check">✓</span> CMS + E-commerce ready</li>
+          <li><span class="icon check">✓</span> Custom web applications</li>
+          <li><span class="icon check">✓</span> Dedicated project manager</li>
+          <li><span class="icon check">✓</span> Priority 24/7 support</li>
+          <li><span class="icon check">✓</span> Monthly strategy calls</li>
+        </ul>
+        <button class="btn btn-primary">Contact Us</button>
+      </div>
+
+    </div>
+
+    <!-- COMPARE HIGHLIGHTS -->
+    <div class="featured-compare">
+      <h2>Why Choose <span class="text-gradient">ApexRow</span></h2>
+      <div class="compare-grid">
+        <div class="compare-item">
+          <div class="icon-big">🎯</div>
+          <h4>Strategy-First</h4>
+          <p>Every project starts with research and planning</p>
+        </div>
+        <div class="compare-item">
+          <div class="icon-big">⚡</div>
+          <h4>Blazing Speed</h4>
+          <p>Optimized for Core Web Vitals and performance</p>
+        </div>
+        <div class="compare-item">
+          <div class="icon-big">🤝</div>
+          <h4>Dedicated Support</h4>
+          <p>Your success team is just a message away</p>
+        </div>
+        <div class="compare-item">
+          <div class="icon-big">🎨</div>
+          <h4>Premium Design</h4>
+          <p>Metallic bronze aesthetic · Dark theme native</p>
+        </div>
+        <div class="compare-item">
+          <div class="icon-big">📊</div>
+          <h4>Data-Driven</h4>
+          <p>Decisions backed by analytics and user research</p>
+        </div>
+        <div class="compare-item">
+          <div class="icon-big">🔒</div>
+          <h4>Enterprise Security</h4>
+          <p>SSL, encryption, and best-practice hardening</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <h2>Package <span class="text-gradient">FAQs</span></h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>Can I switch plans later?</h4>
+          <p>Yes. Upgrade or downgrade anytime. Changes take effect at the start of your next billing cycle.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What does post-launch support cover?</h4>
+          <p>Bug fixes, minor content updates, performance monitoring, and priority email support during business hours.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do you offer custom packages?</h4>
+          <p>Absolutely. If your needs don't fit our standard plans, we'll build a tailored package just for you.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Is there a setup or onboarding fee?</h4>
+          <p>No setup fees. Your first month covers onboarding, discovery, and project kickoff.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="brand-footer">
+      <p>ApexRow Service Packages</p>
+      <p class="label">Premium Digital Agency — Sri Lanka</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function togglePricing(type) {
+      const cards = document.querySelectorAll('.pricing-card');
+      const monthlyBtn = document.getElementById('toggleMonthly');
+      const annualBtn = document.getElementById('toggleAnnual');
+
+      if (type === 'monthly') {
+        monthlyBtn.classList.add('active');
+        annualBtn.classList.remove('active');
+        cards.forEach(c => {
+          c.classList.add('show-monthly');
+          c.querySelectorAll('.pricing-period-type').forEach(el => el.textContent = 'monthly');
+        });
+      } else {
+        annualBtn.classList.add('active');
+        monthlyBtn.classList.remove('active');
+        cards.forEach(c => {
+          c.classList.remove('show-monthly');
+          c.querySelectorAll('.pricing-period-type').forEach(el => el.textContent = 'annually');
+        });
+      }
+    }
+  </script>
+</body>
+</html>

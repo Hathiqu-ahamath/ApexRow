@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ApexRow — Brand Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- BG ORBS -->
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
+
+  <!-- ===== SIDEBAR ===== -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="sidebar-logo">A</span>
+      <span class="sidebar-wordmark">Apex<span class="text-gradient">Row</span></span>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="#brand-mark" class="active"><span class="nav-icon">◆</span> Brand Mark</a></li>
+      <li><a href="#color-palette"><span class="nav-icon">●</span> Color Palette</a></li>
+      <li><a href="#typography"><span class="nav-icon">T</span> Typography</a></li>
+      <li><a href="#gradients"><span class="nav-icon">▬</span> Gradients</a></li>
+      <li><a href="#design-language"><span class="nav-icon">◇</span> Design Language</a></li>
+      <li><a href="#motion"><span class="nav-icon">▶</span> Motion</a></li>
+      <li><a href="#applications"><span class="nav-icon">◧</span> Applications</a></li>
+      <li><a href="#tone"><span class="nav-icon">❝</span> Voice &amp; Tone</a></li>
+    </ul>
+    <div class="sidebar-divider">Resources</div>
+    <ul class="sidebar-nav">
+      <li><a href="invoice.html"><span class="nav-icon">📄</span> Invoice Template</a></li>
+      <li><a href="packages.html"><span class="nav-icon">📦</span> Service Packages</a></li>
+    </ul>
+    <div class="sidebar-footer">
+      <span class="badge">v2.0</span>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-content reveal">
+        <div class="hero-badge"><span class="badge">Brand Kit</span></div>
+        <h1 class="hero-title">Apex<span class="text-gradient">Row</span></h1>
+        <p class="hero-subtitle">Premium Digital Agency</p>
+        <div class="hero-meta">
+          <span>Est. 2026</span>
+          <span class="dot">·</span>
+          <span>Sri Lanka</span>
+          <span class="dot">·</span>
+          <span>v2.0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRAND MARK -->
+    <section id="brand-mark" class="section">
+      <div class="section-header reveal">
+        <span class="badge">01</span>
+        <h2>Brand Mark</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card reveal">
+          <h3>Wordmark</h3>
+          <div class="logo-display">
+            <span class="logo-wordmark">
+              <span style="color:#f5f0eb">Apex</span><span class="text-gradient">Row</span>
+            </span>
+          </div>
+          <p class="label">Always capitalize <em>A</em> and <em>R</em>. No space between.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Icon Mark</h3>
+          <div class="logo-display">
+            <svg viewBox="0 0 32 32" width="90" height="90">
+              <defs>
+                <linearGradient id="icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#4a2c1a"/>
+                  <stop offset="50%" stop-color="#b87333"/>
+                  <stop offset="100%" stop-color="#cd7f32"/>
+                </linearGradient>
+              </defs>
+              <rect width="32" height="32" rx="7" fill="url(#icon-grad)"/>
+              <text x="16" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="20" fill="#fff">A</text>
+            </svg>
+          </div>
+          <p class="label">Rounded square · gradient bg · white "A"</p>
+        </div>
+      </div>
+      <div class="card reveal" style="margin-top:1.5rem">
+        <h3>Logo Clear Space &amp; Usage</h3>
+        <div class="grid-3" style="margin-top:1rem">
+          <div><span class="key">Clear space</span><p class="label" style="margin-top:0.3rem">Minimum = height of the "A" on all sides</p></div>
+          <div><span class="key">Minimum size</span><p class="label" style="margin-top:0.3rem">Wordmark: 120px · Icon: 24px</p></div>
+          <div><span class="key">File format</span><p class="label" style="margin-top:0.3rem">SVG preferred · PNG fallback</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR PALETTE -->
+    <section id="color-palette" class="section">
+      <div class="section-header reveal">
+        <span class="badge">02</span>
+        <h2>Color Palette</h2>
+      </div>
+      <div class="color-grid">
+        <div class="color-swatch reveal" style="--swatch: #0a0a0a" data-hex="#0a0a0a">
+          <div class="swatch-preview"><span class="swatch-copy">Copy</span></div>
+          <div class="swatch-info">
+            <strong>Deep Black</strong>
+            <code>#0a0a0a</code>
+            <span class="label">Primary page background</span>
+          </div>
+        </div>
+        <div class="color-swatch reveal" style="--swatch: #121212" data-hex="#121212">
+          <div class="swatch-preview"><span class="swatch-copy">Copy</span></div>
+          <div class="swatch-info">
+            <strong>Dark</strong>
+            <code>#121212</code>
+            <span class="label">Card / section backgrounds</span>
+          </div>
+        </div>
+        <div class="color-swatch reveal" style="--swatch: #4a2c1a" data-hex="#4a2c1a">
+          <div class="swatch-preview"><span class="swatch-copy">Copy</span></div>
+          <div class="swatch-info">
+            <strong>Rich Brown</strong>
+            <code>#4a2c1a</code>
+            <span class="label">Dark accent · selection</span>
+          </div>
+        </div>
+        <div class="color-swatch reveal" style="--swatch: #b87333" data-hex="#b87333">
+          <div class="swatch-preview"><span class="swatch-copy">Copy</span></div>
+          <div class="swatch-info">
+            <strong>Copper</strong>
+            <code>#b87333</code>
+            <span class="label">Primary metallic accent</span>
+          </div>
+        </div>
+        <div class="color-swatch reveal" style="--swatch: #cd7f32" data-hex="#cd7f32">
+          <div class="swatch-preview"><span class="swatch-copy">Copy</span></div>
+          <div class="swatch-info">
+            <strong>Bronze</strong>
+            <code>#cd7f32</code>
+            <span class="label">Highlights · hover glow</span>
+          </div>
+        </div>
+        <div class="color-swatch reveal" style="--swatch: #f5f0eb" data-hex="#f5f0eb">
+          <div class="swatch-preview"><span class="swatch-copy">Copy</span></div>
+          <div class="swatch-info">
+            <strong>Soft White</strong>
+            <code>#f5f0eb</code>
+            <span class="label">Primary text color</span>
+          </div>
+        </div>
+        <div class="color-swatch reveal" style="--swatch: #a89f94" data-hex="#a89f94">
+          <div class="swatch-preview"><span class="swatch-copy">Copy</span></div>
+          <div class="swatch-info">
+            <strong>Warm Gray</strong>
+            <code>#a89f94</code>
+            <span class="label">Muted · secondary text</span>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal" style="margin-top:1.5rem">
+        <h3>Color Application</h3>
+        <div class="grid-3" style="margin-top:1rem">
+          <div><span class="key">Backgrounds</span><p class="label" style="margin-top:0.3rem">Deep Black primary · Dark for cards</p></div>
+          <div><span class="key">CTAs</span><p class="label" style="margin-top:0.3rem">Gradient bg with Copper/Bronze</p></div>
+          <div><span class="key">Text</span><p class="label" style="margin-top:0.3rem">Soft White primary · Warm Gray muted</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section id="typography" class="section">
+      <div class="section-header reveal">
+        <span class="badge">03</span>
+        <h2>Typography</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card reveal">
+          <div class="font-preview" style="font-family:'Space Grotesk',sans-serif">
+            <span class="badge badge-outline" style="margin-bottom:0.75rem">Space Grotesk</span>
+            <div class="type-h1">Aa</div>
+            <div class="type-h2">The quick brown fox</div>
+            <div class="type-h3">Jumps over the lazy dog</div>
+          </div>
+          <div class="font-weight-demo" style="font-family:'Space Grotesk',sans-serif">
+            <span style="font-weight:500">Medium 500 — The quick brown fox</span>
+            <span style="font-weight:600">Semi-Bold 600 — The quick brown fox</span>
+            <span style="font-weight:700">Bold 700 — The quick brown fox</span>
+          </div>
+          <div class="font-specs">
+            <span>Line height: 1.1–1.3</span>
+            <span>Letter-spacing: -0.01em (headings)</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <div class="font-preview" style="font-family:'Inter',sans-serif">
+            <span class="badge badge-outline" style="margin-bottom:0.75rem">Inter</span>
+            <div class="type-body-xl">The quick brown fox</div>
+            <div class="type-body">Jumps over the lazy dog</div>
+            <div class="type-body-sm">Pack my box with five dozen liquor jugs</div>
+          </div>
+          <div class="font-weight-demo" style="font-family:'Inter',sans-serif">
+            <span style="font-weight:400">Regular 400 — The quick brown fox</span>
+            <span style="font-weight:500">Medium 500 — The quick brown fox</span>
+            <span style="font-weight:600">Semi-Bold 600 — The quick brown fox</span>
+            <span style="font-weight:700">Bold 700 — The quick brown fox</span>
+          </div>
+          <div class="font-specs">
+            <span>Line height: 1.5–1.75</span>
+            <span>Body text @ 16px</span>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal" style="margin-top:1.5rem">
+        <h3>Type Hierarchy</h3>
+        <table class="hierarchy-table">
+          <thead>
+            <tr><th>Element</th><th>Font</th><th>Weight</th><th>Desktop</th><th>Mobile</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>H1</td><td>Space Grotesk</td><td>700</td><td>56–72px</td><td>36–40px</td></tr>
+            <tr><td>H2</td><td>Space Grotesk</td><td>600</td><td>36–48px</td><td>28–32px</td></tr>
+            <tr><td>H3</td><td>Space Grotesk</td><td>600</td><td>24–30px</td><td>20–22px</td></tr>
+            <tr><td>Body large</td><td>Inter</td><td>400</td><td>18px</td><td>16px</td></tr>
+            <tr><td>Body</td><td>Inter</td><td>400</td><td>16px</td><td>15px</td></tr>
+            <tr><td>Body small</td><td>Inter</td><td>400</td><td>14px</td><td>13px</td></tr>
+            <tr><td>Caption</td><td>Inter</td><td>400</td><td>12–13px</td><td>12px</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- GRADIENTS -->
+    <section id="gradients" class="section">
+      <div class="section-header reveal">
+        <span class="badge">04</span>
+        <h2>Gradients</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card reveal">
+          <div class="gradient-preview" style="background:linear-gradient(135deg,#4a2c1a,#b87333,#cd7f32)"></div>
+          <h3>gradient-bg</h3>
+          <code>#4a2c1a → #b87333 → #cd7f32</code>
+          <p class="label">Buttons · banners · full-width accents</p>
+        </div>
+        <div class="card reveal">
+          <div class="gradient-preview" style="background:linear-gradient(135deg,#cd7f32,#e8a65a,#f5f0eb);display:flex;align-items:center;justify-content:center">
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;color:#fff;mix-blend-mode:overlay">ApexRow</span>
+          </div>
+          <h3>gradient-text</h3>
+          <code>#cd7f32 → #f5f0eb</code>
+          <p class="label">Headlines · "Row" in wordmark</p>
+        </div>
+        <div class="card reveal">
+          <div class="gradient-preview" style="background:linear-gradient(135deg,#4a2c1a,#b87333,#cd7f32);display:flex;align-items:center;justify-content:center;flex-direction:column">
+            <svg viewBox="0 0 32 32" width="48" height="48">
+              <rect width="32" height="32" rx="6" fill="#fff" opacity="0.9"/>
+              <text x="16" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="20" fill="#4a2c1a">A</text>
+            </svg>
+          </div>
+          <h3>Icon Gradient</h3>
+          <code>same as gradient-bg</code>
+          <p class="label">Favicon · social avatars · icon mark</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESIGN LANGUAGE -->
+    <section id="design-language" class="section">
+      <div class="section-header reveal">
+        <span class="badge">05</span>
+        <h2>Design Language</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card reveal">
+          <h3>Glass Card</h3>
+          <div class="glass-demo">
+            <div class="glass-card-demo">
+              <div class="glass-dot"></div>
+              <div class="glass-dot"></div>
+              <div class="glass-dot"></div>
+            </div>
+          </div>
+          <pre><code>background: rgba(18, 18, 18, 0.35)
+backdrop-filter: blur(16px)
+border: 1px solid rgba(255,255,255,0.04)</code></pre>
+        </div>
+        <div class="card reveal">
+          <h3>Card Hover Effect</h3>
+          <div class="glass-demo">
+            <div class="glass-card-demo hover-demo">
+              <span style="color:#a89f94">Hover me</span>
+            </div>
+          </div>
+          <pre><code>border-color: rgba(205,127,50,0.3)
+box-shadow: 0 0 40px rgba(205,127,50,0.1)
+transform: scale(1.02)</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOTION -->
+    <section id="motion" class="section">
+      <div class="section-header reveal">
+        <span class="badge">06</span>
+        <h2>Motion</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card motion-card reveal" data-anim="fade-up">
+          <h3>fadeUp</h3>
+          <div class="motion-visual">
+            <div class="motion-box"></div>
+            <svg width="120" height="30" viewBox="0 0 120 30"><path d="M10 25 Q60 5 110 25" stroke="#cd7f32" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/><circle cx="110" cy="25" r="3" fill="#cd7f32"/></svg>
+            <span class="label">0.6s · y: 0 → 30px</span>
+          </div>
+        </div>
+        <div class="card motion-card reveal" data-anim="scale-in">
+          <h3>scaleIn</h3>
+          <div class="motion-visual">
+            <div class="motion-box scale"></div>
+            <svg width="120" height="30" viewBox="0 0 120 30"><path d="M10 15 Q60 5 110 15" stroke="#cd7f32" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/><circle cx="110" cy="15" r="3" fill="#cd7f32"/></svg>
+            <span class="label">0.5s · scale: 0.9 → 1</span>
+          </div>
+        </div>
+        <div class="card motion-card reveal" data-anim="stagger">
+          <h3>Stagger</h3>
+          <div class="stagger-visual">
+            <div class="stagger-dot"></div>
+            <div class="stagger-dot"></div>
+            <div class="stagger-dot"></div>
+            <div class="stagger-dot"></div>
+            <div class="stagger-dot"></div>
+          </div>
+          <span class="label">0.1s delay between children</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPLICATIONS -->
+    <section id="applications" class="section">
+      <div class="section-header reveal">
+        <span class="badge">07</span>
+        <h2>Applications</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card reveal">
+          <h3>Buttons</h3>
+          <div class="btn-row">
+            <button class="btn btn-primary">Start a Project →</button>
+            <button class="btn btn-outline">Learn More</button>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary btn-sm">Small CTA</button>
+            <button class="btn btn-outline btn-sm">Small Outline</button>
+          </div>
+          <p class="label">Border-radius: 10px · Font: Inter 600</p>
+        </div>
+        <div class="card reveal">
+          <h3>Section Header</h3>
+          <div class="section-header-example">
+            <span class="badge">Services</span>
+            <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.6rem;color:#f5f0eb;margin:0.6rem 0 0.25rem">What We Do</h2>
+            <p style="color:#a89f94;margin:0;font-size:0.9rem">We craft digital experiences that matter</p>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal" style="margin-top:1.5rem">
+        <h3>Navbar</h3>
+        <div class="navbar-demo">
+          <div class="navbar-sim">
+            <div class="nav-left">
+              <span class="nav-logo">Apex<span class="text-gradient">Row</span></span>
+            </div>
+            <div class="nav-links">
+              <a href="#">Home</a>
+              <a href="#">Services</a>
+              <a href="#">Portfolio</a>
+              <a href="#">Contact</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mockups -->
+      <div class="card reveal" style="margin-top:1.5rem">
+        <h3>Live Brand Mockups</h3>
+        <div class="mockup-grid">
+          <div class="mockup">
+            <div class="mockup-bar">
+              <span class="mockup-dot" style="background:#ff5f56"></span>
+              <span class="mockup-dot" style="background:#ffbd2e"></span>
+              <span class="mockup-dot" style="background:#27c93f"></span>
+              <span style="margin-left:auto;font-size:0.7rem;color:#a89f94">apexrow.lk</span>
+            </div>
+            <div class="mockup-screen">
+              <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem">
+                <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.85rem;color:#f5f0eb">Apex<span style="background:linear-gradient(135deg,#cd7f32,#f5f0eb);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Row</span></span>
+                <span style="font-size:0.6rem;color:#a89f94">Premium Digital Agency</span>
+              </div>
+              <div class="mockup-line"></div>
+              <div class="mockup-line"></div>
+              <div class="mockup-line"></div>
+              <div class="mockup-line"></div>
+              <div class="mockup-line"></div>
+            </div>
+          </div>
+          <div class="mockup">
+            <div class="mockup-bar" style="justify-content:center">
+              <span style="font-size:0.7rem;color:#a89f94">Brand Guidelines</span>
+            </div>
+            <div class="mockup-screen" style="flex-direction:row;flex-wrap:wrap;gap:0.5rem">
+              <span style="width:22px;height:22px;border-radius:4px;background:#0a0a0a;border:1px solid rgba(255,255,255,0.06)"></span>
+              <span style="width:22px;height:22px;border-radius:4px;background:#121212;border:1px solid rgba(255,255,255,0.06)"></span>
+              <span style="width:22px;height:22px;border-radius:4px;background:#4a2c1a"></span>
+              <span style="width:22px;height:22px;border-radius:4px;background:#b87333"></span>
+              <span style="width:22px;height:22px;border-radius:4px;background:#cd7f32"></span>
+              <span style="width:22px;height:22px;border-radius:4px;background:#f5f0eb"></span>
+              <span style="width:22px;height:22px;border-radius:4px;background:#a89f94"></span>
+              <div style="width:100%;margin-top:0.3rem">
+                <span style="display:block;font-size:0.6rem;color:#a89f94;font-family:'Space Grotesk',sans-serif;font-weight:600">Aa &nbsp;·&nbsp; Space Grotesk / Inter</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOICE & TONE -->
+    <section id="tone" class="section">
+      <div class="section-header reveal">
+        <span class="badge">08</span>
+        <h2>Voice &amp; Tone</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card reveal">
+          <h3>Confident &amp; Warm</h3>
+          <p style="color:#f5f0eb;font-size:1.05rem;line-height:1.5;margin:0.75rem 0">"We build exceptional digital experiences."</p>
+          <p class="label">Premium without being pretentious</p>
+        </div>
+        <div class="card reveal">
+          <h3>Direct &amp; Concise</h3>
+          <p style="color:#f5f0eb;font-size:1.05rem;line-height:1.5;margin:0.75rem 0">"No fluff. Just results."</p>
+          <p class="label">Every word earns its place</p>
+        </div>
+        <div class="card reveal">
+          <h3>Personable</h3>
+          <p style="color:#f5f0eb;font-size:1.05rem;line-height:1.5;margin:0.75rem 0">"Let's build something great together."</p>
+          <p class="label">Uses "we" and "you" — always human</p>
+        </div>
+      </div>
+      <div class="card reveal" style="margin-top:1.5rem">
+        <h3>Do's &amp; Don'ts</h3>
+        <div class="dos-donts">
+          <div class="do"><span class="icon-check">✓</span> Use Deep Black as primary background</div>
+          <div class="do"><span class="icon-check">✓</span> Use gradient-bg for primary CTAs</div>
+          <div class="do"><span class="icon-check">✓</span> Keep generous whitespace (≥1.5rem)</div>
+          <div class="dont"><span class="icon-cross">✗</span> Use light or white backgrounds</div>
+          <div class="dont"><span class="icon-cross">✗</span> Use bright/saturated accent colors</div>
+          <div class="dont"><span class="icon-cross">✗</span> Use photography as backgrounds</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="brand-footer">
+      <p>ApexRow Brand Kit v2.0</p>
+      <p class="label">Designed with the brand it defines</p>
+    </footer>
+
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>

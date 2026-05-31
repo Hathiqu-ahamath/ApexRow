@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ApexRow — Invoice Template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { display: block; background: #0a0a0a; padding: 2rem; }
+    .main { margin-left: 0; max-width: 920px; margin-inline: auto; position: relative; z-index: 1; }
+
+    .invoice-actions { display: flex; gap: 0.75rem; justify-content: flex-end; margin-bottom: 1.5rem; flex-wrap: wrap; }
+
+    .invoice-wrap { position: relative; }
+    .invoice-watermark {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-30deg);
+      font-family: 'Space Grotesk',sans-serif;
+      font-size: 12rem; font-weight: 700;
+      color: rgba(205,127,50,0.03);
+      pointer-events: none;
+      letter-spacing: 0.1em;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .invoice {
+      background: rgba(18,18,18,0.5);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 18px;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .invoice::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #4a2c1a, #b87333, #cd7f32, #b87333, #4a2c1a);
+      background-size: 200% 100%;
+      animation: shimmer 3s linear infinite;
+    }
+    .invoice::after {
+      content: '';
+      position: absolute; top: 3px; left: 0; right: 0;
+      height: 1px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .invoice-status {
+      position: absolute; top: 2rem; right: 2rem;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .invoice-status.paid {
+      background: rgba(39,201,63,0.1);
+      color: #27c93f;
+      border: 1px solid rgba(39,201,63,0.15);
+    }
+    .invoice-status.pending {
+      background: rgba(255,189,46,0.1);
+      color: #ffbd2e;
+      border: 1px solid rgba(255,189,46,0.15);
+    }
+
+    .invoice-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      margin-bottom: 2rem;
+    }
+    .invoice-brand { display: flex; align-items: center; gap: 0.85rem; }
+    .invoice-brand-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: linear-gradient(135deg,#4a2c1a,#b87333,#cd7f32);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk',sans-serif;
+      font-weight: 700; font-size: 1.4rem; color: #fff;
+      box-shadow: 0 2px 16px rgba(205,127,50,0.15);
+    }
+    .invoice-brand-info { display: flex; flex-direction: column; }
+    .invoice-brand-name { font-family: 'Space Grotesk',sans-serif; font-size: 1.3rem; font-weight: 700; }
+    .invoice-brand-tagline { font-size: 0.75rem; color: #a89f94; }
+    .invoice-title { text-align: right; }
+    .invoice-title h1 {
+      font-size: 2.2rem; font-weight: 700;
+      background: linear-gradient(135deg, #cd7f32, #f5f0eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.04em;
+      margin: 0; line-height: 1;
+    }
+    .invoice-number { font-size: 0.85rem; color: #a89f94; margin-top: 0.25rem; }
+
+    .invoice-parties {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .invoice-party { position: relative; }
+    .invoice-party h3 {
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;
+      color: #a89f94; margin-bottom: 0.75rem; font-weight: 600;
+    }
+    .invoice-party p {
+      color: #f5f0eb; line-height: 1.7; font-size: 0.92rem;
+    }
+    .invoice-party strong { color: #f5f0eb; font-weight: 600; }
+
+    .invoice-meta {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .invoice-meta-item label {
+      display: block; font-size: 0.65rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #a89f94; margin-bottom: 0.2rem;
+    }
+    .invoice-meta-item span { font-size: 0.92rem; color: #f5f0eb; font-weight: 500; }
+
+    .invoice-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+    .invoice-table thead { position: relative; }
+    .invoice-table thead::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(205,127,50,0.15), transparent);
+    }
+    .invoice-table th {
+      text-align: left; padding: 0.75rem 1rem;
+      font-size: 0.7rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #a89f94; font-weight: 500;
+    }
+    .invoice-table td {
+      padding: 1rem; color: #f5f0eb; font-size: 0.9rem;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      transition: background 0.2s;
+    }
+    .invoice-table tbody tr { transition: background 0.2s; }
+    .invoice-table tbody tr:hover td { background: rgba(205,127,50,0.03); }
+    .invoice-table .amt { text-align: right; font-variant-numeric: tabular-nums; }
+    .invoice-table .desc { color: #a89f94; font-size: 0.82rem; margin-top: 0.2rem; }
+
+    .invoice-summary { margin-left: auto; width: 300px; }
+    .invoice-summary-row {
+      display: flex; justify-content: space-between;
+      padding: 0.45rem 0; font-size: 0.88rem; color: #a89f94;
+    }
+    .invoice-summary-row.total {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 0.5rem; padding-top: 1rem;
+      font-size: 1.25rem; font-weight: 700; color: #f5f0eb;
+    }
+    .invoice-summary-row.total span:last-child {
+      background: linear-gradient(135deg, #cd7f32, #f5f0eb);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .invoice-footer-text {
+      margin-top: 2.5rem; padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .invoice-footer-text p { color: #a89f94; font-size: 0.82rem; margin: 0; line-height: 1.6; }
+    .invoice-footer-text strong { color: #f5f0eb; }
+
+    @media print {
+      body { background: #fff; padding: 0.5in; }
+      .invoice-actions { display: none; }
+      .bg-orb { display: none; }
+      .invoice-wrap { box-shadow: none; }
+      .invoice {
+        background: #fff; border: 1px solid #ddd; backdrop-filter: none;
+        box-shadow: none; border-radius: 0;
+      }
+      .invoice::before { display: none; }
+      .invoice::after { display: none; }
+      .invoice-title h1 { -webkit-text-fill-color: #b87333; color: #b87333; }
+      .invoice-brand-name, .invoice-party strong, .invoice-meta-item span,
+      .invoice-table td, .invoice-summary-row.total, .invoice-footer-text strong { color: #111; }
+      .invoice-table .desc { color: #555; }
+      .invoice-party p { color: #222; }
+      .invoice-summary-row.total span:last-child {
+        -webkit-text-fill-color: #b87333; color: #b87333; background: none;
+      }
+      .invoice-footer-text p { color: #555; }
+      .invoice-table th { color: #555; }
+      .invoice-status { border: 1px solid #ddd; }
+      .invoice-watermark { display: none; }
+      .invoice-table tbody tr:hover td { background: transparent; }
+    }
+
+    @media (max-width: 700px) {
+      .invoice { padding: 1.5rem; }
+      .invoice-header { flex-direction: column; gap: 1rem; }
+      .invoice-title { text-align: left; }
+      .invoice-parties { grid-template-columns: 1fr; gap: 1rem; }
+      .invoice-meta { grid-template-columns: 1fr 1fr; }
+      .invoice-summary { width: 100%; }
+      .invoice-footer-text { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+      .invoice-status { position: static; display: inline-block; margin-bottom: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
+
+  <main class="main">
+
+    <div class="invoice-actions">
+      <button class="btn btn-outline btn-sm" onclick="window.print()">🖨 Print / PDF</button>
+      <button class="btn btn-primary btn-sm" onclick="history.back()">← Back to Brand Kit</button>
+    </div>
+
+    <div class="invoice-wrap">
+
+      <div class="invoice-watermark">APEXROW</div>
+
+      <div class="invoice" id="invoice">
+
+        <div class="invoice-status paid">● Paid</div>
+
+        <!-- HEADER -->
+        <div class="invoice-header">
+          <div class="invoice-brand">
+            <div class="invoice-brand-icon">A</div>
+            <div class="invoice-brand-info">
+              <div class="invoice-brand-name">Apex<span style="background:linear-gradient(135deg,#cd7f32,#f5f0eb);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Row</span></div>
+              <span class="invoice-brand-tagline">Premium Digital Agency · Sri Lanka</span>
+            </div>
+          </div>
+          <div class="invoice-title">
+            <h1>INVOICE</h1>
+            <div class="invoice-number">#INV-2026-0042</div>
+          </div>
+        </div>
+
+        <!-- PARTIES -->
+        <div class="invoice-parties">
+          <div class="invoice-party">
+            <h3>From</h3>
+            <p>
+              <strong>ApexRow Digital Agency</strong><br />
+              123 Galle Road, Colombo 03<br />
+              Sri Lanka<br />
+              <span style="color:#cd7f32">apexrow.lk@gmail.com</span><br />
+              +94 720 799 153
+            </p>
+          </div>
+          <div class="invoice-party">
+            <h3>Bill To</h3>
+            <p>
+              <strong>Horizon Tech Solutions</strong><br />
+              456 Union Place<br />
+              Colombo 02, Sri Lanka<br />
+              <span style="color:#cd7f32">contact@horizontech.lk</span><br />
+              +94 112 345 678
+            </p>
+          </div>
+        </div>
+
+        <!-- META -->
+        <div class="invoice-meta">
+          <div class="invoice-meta-item">
+            <label>Invoice Date</label>
+            <span>May 29, 2026</span>
+          </div>
+          <div class="invoice-meta-item">
+            <label>Due Date</label>
+            <span>June 28, 2026</span>
+          </div>
+          <div class="invoice-meta-item">
+            <label>Payment Terms</label>
+            <span>Net 30</span>
+          </div>
+        </div>
+
+        <!-- LINE ITEMS -->
+        <table class="invoice-table">
+          <thead>
+            <tr>
+              <th style="width:48%">Service</th>
+              <th style="width:10%">Qty</th>
+              <th style="width:18%" class="amt">Rate</th>
+              <th style="width:24%" class="amt">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong style="color:#f5f0eb">Website Redesign — Corporate</strong>
+                <div class="desc">Full UI/UX audit, wireframing, responsive design, React development, CMS integration</div>
+              </td>
+              <td>1</td>
+              <td class="amt">$4,500.00</td>
+              <td class="amt">$4,500.00</td>
+            </tr>
+            <tr>
+              <td>
+                <strong style="color:#f5f0eb">SEO Optimization Campaign</strong>
+                <div class="desc">On-page SEO, technical audit, keyword research, monthly reporting (3-month campaign)</div>
+              </td>
+              <td>3</td>
+              <td class="amt">$800.00</td>
+              <td class="amt">$2,400.00</td>
+            </tr>
+            <tr>
+              <td>
+                <strong style="color:#f5f0eb">Brand Identity Package</strong>
+                <div class="desc">Logo design, color palette, typography selection, comprehensive brand guidelines</div>
+              </td>
+              <td>1</td>
+              <td class="amt">$2,200.00</td>
+              <td class="amt">$2,200.00</td>
+            </tr>
+            <tr>
+              <td>
+                <strong style="color:#f5f0eb">Maintenance &amp; Support</strong>
+                <div class="desc">Monthly hosting, security patches, content updates, performance monitoring</div>
+              </td>
+              <td>1</td>
+              <td class="amt">$350.00</td>
+              <td class="amt">$350.00</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- SUMMARY -->
+        <div class="invoice-summary">
+          <div class="invoice-summary-row">
+            <span>Subtotal</span>
+            <span>$9,450.00</span>
+          </div>
+          <div class="invoice-summary-row">
+            <span>Tax (10% VAT)</span>
+            <span>$945.00</span>
+          </div>
+          <div class="invoice-summary-row">
+            <span>Discount (Loyalty)</span>
+            <span style="color:#27c93f">−$472.50</span>
+          </div>
+          <div class="invoice-summary-row total">
+            <span>Total Due (USD)</span>
+            <span>$9,922.50</span>
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="invoice-footer-text">
+          <div>
+            <p>
+              <strong>Payment Method:</strong> Bank Transfer (Wire)<br />
+              <strong>Account:</strong> 1234-5678-9012 · Bank of Ceylon<br />
+              <strong>Reference:</strong> INV-2026-0042
+            </p>
+          </div>
+          <div style="text-align:right">
+            <p>
+              <strong style="color:#cd7f32">Thank you for your business!</strong><br />
+              <span style="font-size:0.75rem">apexrow.lk@gmail.com · +94 720 799 153</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    document.querySelector('.invoice').style.animation = 'fadeUpAnim 0.6s ease';
+  </script>
+</body>
+</html>
