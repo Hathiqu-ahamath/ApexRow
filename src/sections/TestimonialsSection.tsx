@@ -23,7 +23,7 @@ export function TestimonialsSection() {
           {items.map((item, i) => (
             <div
               key={`${item.id}-${i}`}
-              className="glass-card flex w-[350px] shrink-0 flex-col rounded-xl p-6"
+              className="glass-card flex w-[80vw] min-w-[280px] max-w-[350px] shrink-0 flex-col rounded-xl p-6"
             >
               <svg
                 className="mb-4 h-8 w-8 text-red/40"

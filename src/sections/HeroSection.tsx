@@ -23,7 +23,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mx-auto max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-black"
+          className="mx-auto max-w-4xl fluid-hero font-bold leading-tight text-black"
         >
           We Build{' '}
           <span className="gradient-text">Exceptional</span>{' '}
@@ -34,7 +34,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-gray leading-relaxed"
+          className="mx-auto mt-6 max-w-2xl fluid-body text-gray leading-relaxed"
         >
           From stunning websites to powerful applications, we transform your vision into reality
           with cutting-edge technology and award-winning design.

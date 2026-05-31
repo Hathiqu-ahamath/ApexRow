@@ -69,7 +69,7 @@ export function Navbar() {
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="relative z-10 cursor-pointer text-black lg:hidden"
+          className="relative z-10 flex items-center justify-center min-h-[44px] min-w-[44px] cursor-pointer text-black lg:hidden"
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -97,7 +97,7 @@ export function Navbar() {
                   <Link
                     to={link.href}
                     className={cn(
-                      'text-2xl font-semibold transition-colors duration-300',
+                      'flex items-center min-h-[44px] text-2xl font-semibold transition-colors duration-300',
                       isActive ? 'text-black' : 'text-gray hover:text-black',
                     )}
                   >

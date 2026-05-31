@@ -151,6 +151,26 @@
   to { transform: translateX(-50%); }
 }
 
+@utility fluid-hero {
+  font-size: clamp(2.25rem, 1.5rem + 3.75cqi, 4.5rem);
+}
+
+@utility fluid-2xl {
+  font-size: clamp(1.5rem, 1rem + 2.5cqi, 3rem);
+}
+
+@utility fluid-xl {
+  font-size: clamp(1.25rem, 1rem + 1.5cqi, 2.25rem);
+}
+
+@utility fluid-lg {
+  font-size: clamp(1rem, 0.875rem + 0.75cqi, 1.5rem);
+}
+
+@utility fluid-body {
+  font-size: clamp(0.875rem, 0.8125rem + 0.375cqi, 1.125rem);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

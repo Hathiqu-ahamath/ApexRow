@@ -6,7 +6,7 @@ import { portfolioCategories } from '../data/portfolio'
 import { usePortfolio } from '../hooks/usePortfolio'
 import { SectionHeader } from '../components/ui/SectionHeader'
 import { Button } from '../components/ui/Button'
-import { cn } from '../lib/utils'
+import { cn, imgSrcSet } from '../lib/utils'
 
 export function PortfolioSection() {
   const { items, loading } = usePortfolio()
@@ -67,6 +67,8 @@ export function PortfolioSection() {
                     src={item.image}
                     alt={item.title}
                     loading="lazy"
+                    srcSet={imgSrcSet(item.image)}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>

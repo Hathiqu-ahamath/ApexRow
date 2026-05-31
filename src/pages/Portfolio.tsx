@@ -5,6 +5,7 @@ import { SectionHeader } from '../components/ui/SectionHeader'
 import { ScrollReveal } from '../components/ui/ScrollReveal'
 import { CTASection } from '../sections/CTASection'
 import { useSEO } from '../hooks/useSEO'
+import { imgSrcSet } from '../lib/utils'
 
 export default function Portfolio() {
   useSEO({
@@ -39,6 +40,8 @@ export default function Portfolio() {
                     src={item.image}
                     alt={item.title}
                     loading="lazy"
+                    srcSet={imgSrcSet(item.image)}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>

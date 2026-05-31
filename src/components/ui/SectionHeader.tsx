@@ -27,11 +27,11 @@ export function SectionHeader({ title, subtitle, badge, className, align = 'cent
           {badge}
         </span>
       )}
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight">
+      <h2 className="fluid-2xl font-bold text-black leading-tight">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-base sm:text-lg text-gray leading-relaxed">
+        <p className="mt-4 fluid-body text-gray leading-relaxed">
           {subtitle}
         </p>
       )}
