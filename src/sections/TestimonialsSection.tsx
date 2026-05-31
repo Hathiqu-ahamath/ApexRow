@@ -11,7 +11,7 @@ export function TestimonialsSection() {
   const offset = useRef(0)
   const dragging = useRef(false)
   const paused = useRef(false)
-  const raf = useRef<number>()
+  const raf = useRef<number | null>(null)
   const lastX = useRef(0)
 
   const getCardWidth = useCallback(() => {
@@ -46,7 +46,7 @@ export function TestimonialsSection() {
 
   useEffect(() => {
     raf.current = requestAnimationFrame(loop)
-    return () => raf.current && cancelAnimationFrame(raf.current)
+    return () => { if (raf.current !== null) cancelAnimationFrame(raf.current) }
   }, [loop])
 
   const onDown = (e: React.PointerEvent) => {
