@@ -25,6 +25,9 @@
 
   /* Aurora background animation (Tailwind v4 equivalent of v3 keyframes/animation config) */
   --animate-aurora: aurora 60s linear infinite;
+  --animate-grid-x: grid-x 10s linear infinite;
+  --animate-grid-y: grid-y 5s linear infinite;
+  --animate-scan: scan 4s linear infinite;
 }
 
 @keyframes aurora {
@@ -144,6 +147,21 @@
 @keyframes drift-reverse {
   from { background-position: 0 0; }
   to { background-position: -80px -80px; }
+}
+
+@keyframes grid-x {
+  from { background-position: 0 0; }
+  to { background-position: 60px 0; }
+}
+
+@keyframes grid-y {
+  from { background-position: 0 0; }
+  to { background-position: 0 60px; }
+}
+
+@keyframes scan {
+  from { transform: translateY(-50px); }
+  to { transform: translateY(150px); }
 }
 
 @utility fluid-hero {

@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react'
-import { motion, useMotionValue, useSpring, useTransform, useAnimationFrame } from 'motion/react'
+import { useEffect } from 'react'
+import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 
 function useMousePosition() {
   const x = useMotionValue(0.5)
@@ -172,28 +172,23 @@ function GeometricShapes() {
 }
 
 function AnimatedPatterns() {
-  const gridRef = useRef<HTMLDivElement>(null)
-
-  useAnimationFrame((time) => {
-    if (gridRef.current) {
-      const y = (time * 0.02) % 60
-      const x = (time * 0.01) % 60
-      gridRef.current.style.backgroundPosition = `${x}px ${y}px`
-    }
-  })
-
   return (
-    <div
-      ref={gridRef}
-      className="absolute inset-0"
-      style={{
-        backgroundImage: `
-          linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)
-        `,
-        backgroundSize: '60px 60px',
-      }}
-    />
+    <>
+      <div
+        className="absolute inset-0 animate-grid-x"
+        style={{
+          backgroundImage: 'linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px)',
+          backgroundSize: '60px 100%',
+        }}
+      />
+      <div
+        className="absolute inset-0 animate-grid-y"
+        style={{
+          backgroundImage: 'linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)',
+          backgroundSize: '100% 60px',
+        }}
+      />
+    </>
   )
 }
 
@@ -216,18 +211,9 @@ function RadialGrid() {
 }
 
 function ScanLine() {
-  const scanRef = useRef<HTMLDivElement>(null)
-
-  useAnimationFrame((time) => {
-    if (!scanRef.current) return
-    const y = ((time * 0.05) % 200) - 50
-    scanRef.current.style.transform = `translateY(${y}vh)`
-  })
-
   return (
     <div
-      ref={scanRef}
-      className="pointer-events-none absolute left-0 right-0 h-[200px] opacity-[0.015]"
+      className="pointer-events-none absolute left-0 right-0 h-[200px] animate-scan opacity-[0.015]"
       style={{
         background: 'linear-gradient(180deg, transparent, rgba(206, 38, 38, 0.3), transparent)',
         top: '-100px',
